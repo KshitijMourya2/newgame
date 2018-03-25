@@ -30,7 +30,6 @@ defmodule CheckersWeb.GamesChannel do
   end
 
   def handle_in("assignPlayer", %{"id" => id}, socket) do
-     IO.inspect("inside gamechannel assignplayer")
      game = Checkers.GameBackup.load(socket.assigns[:name])
      game1 = Game.assignPlayer(game,id)
      Checkers.GameBackup.save(socket.assigns[:name],game1)
