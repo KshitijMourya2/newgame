@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from 'reactstrap';
 import classnames from 'classnames';
 
 export default function game_init(root,channel) {
@@ -23,14 +22,18 @@ class Checkers extends React.Component {
    this.channel.join()
         .receive("ok", this.renderView.bind(this))
         .receive("error",resp => {console.log("unable to join",resp)});
-        this.channel.on("assignPlayer", payload => {this.setState(payload.game)});
-        this.channel.on("movepawn", payload => {this.setState(payload.game)});
+        this.channel.on("assignPlayer", payload => {this.setState(payload.game)})
+        this.channel.on("movepawn", payload => {this.setState(payload.game)})
 
  }
 
- renderView(view){
-    this.setState(view.game);
-  }
+ render(view){
+   this.setState(view.game);
+ }
+
+renderView(view){
+   this.setState(view.game);
+ }
 
   createBoard()
   {
@@ -64,8 +67,14 @@ class Checkers extends React.Component {
 
   movepawn(id,pawn_id,color)
   {
-    this.channel.push("movepawn", {id: id, pawn_id: pawn_id, color: color})
+  console.log("This is Move Pawn")
+  console.log(window.userName)
+  console.log(this.state)
+  if((this.state.player1 == window.userName && this.state.nextChance == "red") ||
+     (this.state.player2 == window.userName && this.state.nextChance == "black")){
+  this.channel.push("movepawn", {id: id, pawn_id: pawn_id, color: color})
                 .receive("ok", this.renderView.bind(this));
+    }
   }
 
   pawnClicked(id,pawn_id,color,player)
@@ -75,6 +84,7 @@ class Checkers extends React.Component {
     //      this.channel.push("movepawn", {id: id, pawn_id: pawn_id, color: color})
     //                  .receive("ok", this.renderView.bind(this))
     //}
+    console.log(" in pawnClicked")
     console.log(id);
     console.log(color);
     console.log(player);
@@ -82,6 +92,14 @@ class Checkers extends React.Component {
     var valid_pos2;
     this.setState({previously_clicked:pawn_id})
     this.setState({previous_player:color})
+    console.log("setting the dict-------------------------------------")
+    console.log(this.state.player1 == window.userName)
+    console.log(this.state.player1)
+    console.log(window.userName)
+    console.log(this.state.nextChance == "red")
+    console.log(color == "red")
+    console.log(this.state.player2 == window.userName)
+    console.log(this.state.nextChance == "black")
     let temp = this.state.moves
     if((this.state.player1 == window.userName && this.state.nextChance == "red" && color == "red") ||
        (this.state.player2 == window.userName && this.state.nextChance == "black"
@@ -93,7 +111,7 @@ class Checkers extends React.Component {
 
  setPlayer(){
  this.channel.push("assignPlayer", {id: window.userName})
-         .receive("ok", this.renderView.bind(this));
+             .receive("ok", this.renderView.bind(this));
   }
 
   render()

@@ -4,7 +4,6 @@ defmodule Checkers.Game do
   def assignPlayer(game,playername) do
       IO.inspect('Inside assignPlayer')
       IO.inspect(playername)
-      IO.inspect(game)
       IO.inspect(game.player1)
       IO.inspect(game.player2)
       cond do
@@ -22,7 +21,7 @@ defmodule Checkers.Game do
 
        	previously_clicked: 100,
        	previous_player: "none",
-        validSquares: %{},
+        moves: %{},
         nextChance: "red",
         player1: "none",
         player2: "none",
@@ -37,7 +36,7 @@ defmodule Checkers.Game do
         pawns: game[:pawns],
         previously_clicked: game.previously_clicked,
        	previous_player: game.previous_player,
-        validSquares: game[:validSquares],
+        moves: game[:moves],
         nextChance: game.nextChance,
         player1: game.player1,
         player2: game.player2,
@@ -129,7 +128,7 @@ defmodule Checkers.Game do
     game = Map.put(game, :pawns, newPawns)
     game = %{game | previously_clicked: 100 }
     game = %{game | previous_player: 'none' }
-    game = %{game | validSquares: %{}}
+    game = %{game | moves: %{}}
     if(color == "red") do
       game = %{game | nextChance: "black"}
     else
@@ -173,7 +172,7 @@ defmodule Checkers.Game do
     #set the current value for valid squares
     IO.inspect('this is getNextPos')
     IO.inspect(game)
-    game = Map.put(game, :validSquares, makePawns)
+    game = Map.put(game, :moves, makePawns)
     game = %{game | previously_clicked: id }
     game = %{game | previous_player: color }
   end
