@@ -1,0 +1,64 @@
+@import "bootstrap";
+
+#layout {
+    height: 840px;
+    width: 840px;
+    margin: 0 auto;
+    border: 20px solid;
+    border-color: green;
+}
+
+body {
+    font-size: 20pt;
+}
+.piece {
+    width: 80%;
+    height: 80%;
+    border-radius: 29px;
+    margin: 10%;
+    cursor:move;
+}
+.red{
+    background-color:red;
+}
+
+.black{
+    background-color:#663300;
+}
+
+.king{
+    border: 7px solid blue;
+    width: 80%;
+    height: 80%;
+    border-radius: 30px;
+    margin: 10%;
+}
+
+.square {
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    float:left;
+    line-height: 140px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.square_highlight {
+    width: 100px;
+    height: 100px;
+    border: 10px solid yellow;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    float:left;
+    line-height: 140px;
+    text-align: center;
+    font-family: "Arial Narrow";
+    font-weight: bold;
+    font-size: 30px;
+}

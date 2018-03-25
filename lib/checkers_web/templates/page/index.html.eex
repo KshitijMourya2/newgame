@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col">
+    <h1 id="index-page">Join a Game</h1>
+   <form action= "/game/:game" method="get">
+      <div>
+     <h3> Enter Game Name</h3>
+     <input type="text" name="username" id ="username">
+     </div>
+     <div>
+     <h3> Enter User Name</h3>
+     <input type="text" name="pusername" id ="pusername">
+     </div>
+     <input type="submit" value="Submit">
+   </form>
+  </div>
+</div>
